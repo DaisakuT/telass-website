@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ★ ここを変更：記事タイトル -->
+  <title>【ここに記事タイトル】 | 照株式会社ブログ</title>
+  <meta name="description" content="【ここに記事の説明文を120文字程度で】">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .article-header {
+      padding: 180px 0 60px;
+      background: var(--black);
+      color: var(--white);
+      position: relative;
+    }
+    .article-header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 30%, rgba(200, 168, 124, 0.1) 0%, transparent 60%);
+    }
+    .article-header .container { position: relative; z-index: 2; }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .article-date {
+      font-family: var(--font-en);
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 1px;
+    }
+    .article-tag {
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--gold);
+      background: rgba(200, 168, 124, 0.15);
+      padding: 3px 12px;
+      border-radius: 3px;
+      font-weight: 500;
+    }
+    .article-header h1 {
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      line-height: 1.6;
+    }
+    .article-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 32px 80px;
+    }
+    .article-body h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 48px 0 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--gold);
+      letter-spacing: 1px;
+    }
+    .article-body h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 36px 0 12px;
+      padding-left: 14px;
+      border-left: 3px solid var(--gold);
+    }
+    .article-body p {
+      font-size: 15px;
+      line-height: 2.2;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .article-body img {
+      width: 100%;
+      border-radius: 8px;
+      margin: 24px 0;
+    }
+    .article-body ul, .article-body ol {
+      padding-left: 24px;
+      margin-bottom: 20px;
+    }
+    .article-body li {
+      font-size: 15px;
+      line-height: 2;
+      color: var(--text);
+      margin-bottom: 4px;
+      list-style: disc;
+    }
+    .article-body ol li {
+      list-style: decimal;
+    }
+    .article-body blockquote {
+      border-left: 3px solid var(--gold);
+      padding: 16px 24px;
+      background: rgba(200, 168, 124, 0.06);
+      border-radius: 0 8px 8px 0;
+      margin: 24px 0;
+      font-size: 15px;
+      color: var(--text);
+      line-height: 2;
+    }
+    .article-back {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 32px 80px;
+    }
+    .article-back a {
+      font-size: 14px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      transition: color var(--transition);
+    }
+    .article-back a:hover {
+      color: var(--gold-dark);
+    }
+    @media (max-width: 768px) {
+      .article-header { padding: 140px 0 40px; }
+      .article-body { padding: 40px 20px 60px; }
+      .article-back { padding: 0 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo">
+        <div class="logo-mark">照</div>
+        TELASS
+      </a>
+      <nav class="nav">
+        <a href="../sauna-consulting.html">サウナコンサル</a>
+        <a href="../media.html">メディア出演</a>
+        <a href="../blog.html">ブログ</a>
+        <a href="../about.html">会社概要</a>
+        <a href="../contact.html" class="nav-cta">お問い合わせ</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="../sauna-consulting.html">サウナコンサルティング</a>
+    <a href="../media.html">メディア出演・番組企画</a>
+    <a href="../blog.html">ブログ</a>
+    <a href="../about.html">代表紹介・会社概要</a>
+    <a href="../contact.html">お問い合わせ</a>
+  </nav>
+
+  <!-- Article Header -->
+  <section class="article-header">
+    <div class="container">
+      <div class="article-meta">
+        <!-- ★ ここを変更：日付とカテゴリ -->
+        <span class="article-date">2026.01.01</span>
+        <span class="article-tag">サウナ</span>
+      </div>
+      <!-- ★ ここを変更：記事タイトル -->
+      <h1>ここに記事タイトルを入力</h1>
+    </div>
+  </section>
+
+  <!-- Article Body -->
+  <div class="article-body">
+
+    <!-- ★ ここから記事本文を書く ★ -->
+
+    <p>ここに導入文を書きます。記事の概要や、読者が得られる情報を簡潔に伝えましょう。</p>
+
+    <!-- 画像を入れたい場合 -->
+    <!-- <img src="../images/blog/ファイル名.jpg" alt="画像の説明"> -->
+
+    <h2>見出し1</h2>
+
+    <p>本文を書きます。段落を変えたい場合は、新しい &lt;p&gt; タグで囲みます。</p>
+
+    <p>このように、&lt;p&gt;ここに文章&lt;/p&gt; の形で段落を追加していきます。</p>
+
+    <h3>小見出し</h3>
+
+    <p>より詳しい内容をここに書きます。</p>
+
+    <!-- 箇条書き -->
+    <ul>
+      <li>ポイント1</li>
+      <li>ポイント2</li>
+      <li>ポイント3</li>
+    </ul>
+
+    <!-- 番号付きリスト -->
+    <ol>
+      <li>ステップ1</li>
+      <li>ステップ2</li>
+      <li>ステップ3</li>
+    </ol>
+
+    <!-- 引用 -->
+    <blockquote>
+      引用したい文章をここに書きます。
+    </blockquote>
+
+    <h2>見出し2</h2>
+
+    <p>次のセクションの本文を書きます。</p>
+
+    <h2>まとめ</h2>
+
+    <p>記事の締めくくりを書きます。</p>
+
+    <!-- ★ 記事本文ここまで ★ -->
+
+  </div>
+
+  <!-- Back to Blog -->
+  <div class="article-back">
+    <a href="../blog.html">← ブログ一覧に戻る</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">照 TELASS</div>
+          <p class="footer-desc">サウナの力で、人と企業を照らす。<br>照株式会社</p>
+        </div>
+        <div>
+          <h4>SERVICES</h4>
+          <div class="footer-links">
+            <a href="../sauna-consulting.html">サウナコンサルティング</a>
+            <a href="../media.html">メディア出演・番組企画</a>
+          </div>
+        </div>
+        <div>
+          <h4>COMPANY</h4>
+          <div class="footer-links">
+            <a href="../about.html">代表紹介・会社概要</a>
+            <a href="../blog.html">ブログ</a>
+            <a href="../contact.html">お問い合わせ</a>
+          </div>
+          <h4 style="margin-top: 24px;">SNS</h4>
+          <div class="footer-links">
+            <a href="https://www.instagram.com/daisaku.terashi" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://x.com/Satsummer099" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 照株式会社 TELASS Inc. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

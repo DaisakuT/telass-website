@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ブログ記事の投稿方法</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Inter:wght@400;600&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: #444; background: #f8f7f4; line-height: 1.9; }
+  .header { background: #1a1a1a; color: #fff; padding: 40px; }
+  .header h1 { font-size: 24px; margin-bottom: 8px; }
+  .header p { color: #aaa; font-size: 14px; }
+  .main { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; }
+  h2 { font-size: 20px; color: #1a1a1a; margin: 40px 0 12px; padding-bottom: 8px; border-bottom: 2px solid #c8a87c; }
+  h3 { font-size: 16px; color: #1a1a1a; margin: 24px 0 8px; }
+  p { margin-bottom: 12px; font-size: 15px; }
+  .step { background: #fff; border: 1px solid #e8e4de; border-radius: 8px; padding: 24px; margin: 16px 0; }
+  .step-num { display: inline-block; background: #1a1a1a; color: #c8a87c; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 700; font-size: 14px; margin-right: 8px; }
+  code { background: #f0ede8; padding: 2px 8px; border-radius: 4px; font-size: 13px; font-family: 'Inter', monospace; }
+  pre { background: #f0ede8; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.7; margin: 12px 0 16px; font-family: 'Inter', monospace; }
+  .tip { background: #f0f8f0; border-left: 4px solid #2d8a4e; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+  .tip-title { color: #2d8a4e; font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .warn { background: #fff8f0; border-left: 4px solid #e8a040; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+  .warn-title { color: #b07020; font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  ul { padding-left: 24px; margin-bottom: 12px; }
+  li { margin-bottom: 4px; font-size: 15px; }
+  strong { color: #1a1a1a; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>ブログ記事の投稿方法</h1>
+  <p>照株式会社 Webサイト — GitHub Pages でのブログ更新ガイド</p>
+</div>
+
+<div class="main">
+
+<h2>全体の流れ</h2>
+<p>ブログ記事を投稿するには、以下の <strong>2つのステップ</strong> だけです：</p>
+<ol>
+  <li>記事ファイルを作成して <code>blog/</code> フォルダにアップロード</li>
+  <li><code>blog.html</code> の一覧に記事カードを追加</li>
+</ol>
+
+<h2>ステップ1：記事ファイルを作成する</h2>
+
+<div class="step">
+  <p><span class="step-num">1</span> <strong>TEMPLATE.html をコピー</strong></p>
+  <p>GitHubのリポジトリで <code>blog/TEMPLATE.html</code> を開き、右上の鉛筆アイコン（Edit）をクリックして、全文をコピーします。</p>
+</div>
+
+<div class="step">
+  <p><span class="step-num">2</span> <strong>新しいファイルを作成</strong></p>
+  <p>リポジトリのトップ → <code>blog</code> フォルダ → 「Add file」→「Create new file」をクリック。</p>
+  <p>ファイル名は以下のルールで付けてください：</p>
+  <pre>YYYY-MM-DD-タイトル.html</pre>
+  <p>例：</p>
+  <pre>2026-04-01-sauna-trend.html
+2026-04-15-kirinosato-renewal.html</pre>
+</div>
+
+<div class="step">
+  <p><span class="step-num">3</span> <strong>テンプレートを貼り付けて、★マーク部分を編集</strong></p>
+  <p>コピーしたテンプレートを貼り付け、以下の <strong>★マーク</strong> が付いた箇所を書き換えます：</p>
+  <ul>
+    <li><code>&lt;title&gt;</code> 内の記事タイトル</li>
+    <li><code>&lt;meta name="description"&gt;</code> の説明文</li>
+    <li>日付（<code>article-date</code>）</li>
+    <li>カテゴリ（<code>article-tag</code>）— サウナ、メディア、お知らせ など</li>
+    <li>記事タイトル（<code>&lt;h1&gt;</code>）</li>
+    <li>記事本文（<code>article-body</code> 内）</li>
+  </ul>
+</div>
+
+<div class="step">
+  <p><span class="step-num">4</span> <strong>本文の書き方</strong></p>
+  <p>以下のHTMLタグだけ覚えれば記事が書けます：</p>
+
+<pre>&lt;p&gt;普通の段落はこのように書きます。&lt;/p&gt;
+
+&lt;h2&gt;大きな見出し&lt;/h2&gt;
+
+&lt;h3&gt;小さな見出し&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;箇条書き1&lt;/li&gt;
+  &lt;li&gt;箇条書き2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;番号付きリスト1&lt;/li&gt;
+  &lt;li&gt;番号付きリスト2&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  引用文をここに書きます。
+&lt;/blockquote&gt;
+
+&lt;img src="../images/blog/ファイル名.jpg" alt="画像の説明"&gt;
+
+&lt;strong&gt;太字にしたい部分&lt;/strong&gt;</pre>
+</div>
+
+<div class="step">
+  <p><span class="step-num">5</span> <strong>「Commit changes」で保存</strong></p>
+  <p>画面下部の「Commit changes」をクリックすると、記事が公開されます。</p>
+</div>
+
+<div class="tip">
+  <div class="tip-title">POINT：画像を使いたい場合</div>
+  <p><code>images/blog/</code> フォルダを作って、そこに画像をアップロードしてください。記事からは <code>&lt;img src="../images/blog/ファイル名.jpg" alt="説明"&gt;</code> で表示できます。</p>
+</div>
+
+<h2>ステップ2：ブログ一覧に記事カードを追加する</h2>
+
+<div class="step">
+  <p><span class="step-num">1</span> <strong>blog.html を編集</strong></p>
+  <p>リポジトリのトップにある <code>blog.html</code> を開き、鉛筆アイコンで編集モードにします。</p>
+</div>
+
+<div class="step">
+  <p><span class="step-num">2</span> <strong>記事カードを追加</strong></p>
+  <p><code>&lt;!-- ▼ 記事カード --&gt;</code> のコメントの直後に、以下のコードをコピー＆貼り付けして、内容を書き換えます：</p>
+
+<pre>&lt;a href="blog/YYYY-MM-DD-タイトル.html" class="blog-card fade-in"&gt;
+  &lt;div class="blog-card-thumb"&gt;
+    &lt;!-- サムネイル画像がある場合: &lt;img src="images/blog/xxx.jpg" alt=""&gt; --&gt;
+  &lt;/div&gt;
+  &lt;div class="blog-card-body"&gt;
+    &lt;div class="blog-card-meta"&gt;
+      &lt;span class="blog-card-date"&gt;2026.04.01&lt;/span&gt;
+      &lt;span class="blog-card-tag"&gt;サウナ&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;h3&gt;ここに記事タイトル&lt;/h3&gt;
+    &lt;p&gt;ここに記事の要約を2〜3行で&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/a&gt;</pre>
+</div>
+
+<div class="warn">
+  <div class="warn-title">注意</div>
+  <p>新しい記事は <strong>一番上（既存の記事カードの上）</strong> に追加してください。そうすることで、新しい記事が一覧の先頭に表示されます。</p>
+</div>
+
+<div class="step">
+  <p><span class="step-num">3</span> <strong>「Commit changes」で保存</strong></p>
+  <p>数分後にサイトに反映されます。</p>
+</div>
+
+<h2>書き換える箇所のまとめ</h2>
+
+<p>毎回変更が必要なのは以下の部分だけです：</p>
+
+<h3>記事ファイル（blog/YYYY-MM-DD-xxx.html）</h3>
+<ul>
+  <li><code>&lt;title&gt;</code> — 記事タイトル</li>
+  <li><code>&lt;meta name="description"&gt;</code> — 記事の説明</li>
+  <li><code>article-date</code> — 日付</li>
+  <li><code>article-tag</code> — カテゴリ</li>
+  <li><code>&lt;h1&gt;</code> — 記事タイトル</li>
+  <li><code>article-body</code> の中身 — 本文</li>
+</ul>
+
+<h3>一覧ページ（blog.html）</h3>
+<ul>
+  <li><code>href</code> — 記事ファイルへのリンク</li>
+  <li>日付・カテゴリ・タイトル・要約</li>
+</ul>
+
+<div class="tip">
+  <div class="tip-title">POINT</div>
+  <p>迷ったら、サンプル記事（<code>blog/2026-03-19-sample.html</code>）を見て参考にしてください。実際の記事がどのようなHTMLになっているか確認できます。</p>
+</div>
+
+</div>
+</body>
+</html>
