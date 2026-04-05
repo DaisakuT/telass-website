@@ -55,11 +55,18 @@
       padding: 0 32px;
       position: relative;
       z-index: 3;
+      overflow: hidden;
+      box-sizing: border-box;
     }
     .article-hero-image img {
       width: 100%;
+      max-width: 100%;
+      height: auto;
+      max-height: 480px;
+      object-fit: cover;
       border-radius: 12px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      display: block;
     }
     .article-body {
       max-width: 760px;
@@ -89,8 +96,15 @@
     }
     .article-body img {
       width: 100%;
+      max-width: 100%;
+      height: auto;
       border-radius: 8px;
       margin: 24px 0;
+      display: block;
+      object-fit: cover;
+    }
+    .article-body {
+      overflow: hidden;
     }
     .article-body figure {
       margin: 24px 0;
