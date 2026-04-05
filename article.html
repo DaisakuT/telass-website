@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ブログ | 照株式会社</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .article-header {
+      padding: 180px 0 60px;
+      background: var(--black);
+      color: var(--white);
+      position: relative;
+    }
+    .article-header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 30%, rgba(200, 168, 124, 0.1) 0%, transparent 60%);
+    }
+    .article-header .container { position: relative; z-index: 2; }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .article-date {
+      font-family: var(--font-en);
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 1px;
+    }
+    .article-tag {
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--gold);
+      background: rgba(200, 168, 124, 0.15);
+      padding: 3px 12px;
+      border-radius: 3px;
+      font-weight: 500;
+    }
+    .article-header h1 {
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      line-height: 1.6;
+    }
+    .article-hero-image {
+      max-width: 760px;
+      margin: -40px auto 0;
+      padding: 0 32px;
+      position: relative;
+      z-index: 3;
+    }
+    .article-hero-image img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+    .article-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 32px 80px;
+    }
+    .article-body h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 48px 0 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--gold);
+      letter-spacing: 1px;
+    }
+    .article-body h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 36px 0 12px;
+      padding-left: 14px;
+      border-left: 3px solid var(--gold);
+    }
+    .article-body p {
+      font-size: 15px;
+      line-height: 2.2;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .article-body img {
+      width: 100%;
+      border-radius: 8px;
+      margin: 24px 0;
+    }
+    .article-body figure {
+      margin: 24px 0;
+    }
+    .article-body figcaption {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-light);
+      margin-top: 8px;
+    }
+    .article-body ul, .article-body ol {
+      padding-left: 24px;
+      margin-bottom: 20px;
+    }
+    .article-body li {
+      font-size: 15px;
+      line-height: 2;
+      color: var(--text);
+      margin-bottom: 4px;
+      list-style: disc;
+    }
+    .article-body ol li { list-style: decimal; }
+    .article-body blockquote {
+      border-left: 3px solid var(--gold);
+      padding: 16px 24px;
+      background: rgba(200, 168, 124, 0.06);
+      border-radius: 0 8px 8px 0;
+      margin: 24px 0;
+      font-size: 15px;
+      color: var(--text);
+      line-height: 2;
+    }
+    .article-body a {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+    .article-body a:hover { color: var(--gold-dark); }
+    .article-back {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 32px 80px;
+    }
+    .article-back a {
+      font-size: 14px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      transition: color var(--transition);
+    }
+    .article-back a:hover { color: var(--gold-dark); }
+    .article-loading {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 32px;
+      text-align: center;
+      color: var(--text-light);
+      font-size: 14px;
+    }
+    @media (max-width: 768px) {
+      .article-header { padding: 140px 0 40px; }
+      .article-body { padding: 32px 20px 60px; }
+      .article-back { padding: 0 20px 60px; }
+      .article-hero-image { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo">
+        <div class="logo-mark">照</div>
+        TELASS
+      </a>
+      <nav class="nav">
+        <a href="../sauna-consulting.html">サウナコンサル</a>
+        <a href="../media.html">メディア出演</a>
+        <a href="../blog.html">ブログ</a>
+        <a href="../about.html">会社概要</a>
+        <a href="../contact.html" class="nav-cta">お問い合わせ</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="../sauna-consulting.html">サウナコンサルティング</a>
+    <a href="../media.html">メディア出演・番組企画</a>
+    <a href="../blog.html">ブログ</a>
+    <a href="../about.html">代表紹介・会社概要</a>
+    <a href="../contact.html">お問い合わせ</a>
+  </nav>
+
+  <!-- Article Header (populated by JS) -->
+  <section class="article-header" id="article-header">
+    <div class="container">
+      <div class="article-meta">
+        <span class="article-date" id="article-date"></span>
+        <span class="article-tag" id="article-tag"></span>
+      </div>
+      <h1 id="article-title">読み込み中...</h1>
+    </div>
+  </section>
+
+  <!-- Hero Image -->
+  <div class="article-hero-image" id="article-hero-image" style="display:none;"></div>
+
+  <!-- Article Body (populated by JS) -->
+  <div class="article-body" id="article-body">
+    <div class="article-loading">記事を読み込み中...</div>
+  </div>
+
+  <!-- Back to Blog -->
+  <div class="article-back">
+    <a href="../blog.html">← ブログ一覧に戻る</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">照 TELASS</div>
+          <p class="footer-desc">サウナの力で、人と企業を照らす。<br>照株式会社</p>
+        </div>
+        <div>
+          <h4>SERVICES</h4>
+          <div class="footer-links">
+            <a href="../sauna-consulting.html">サウナコンサルティング</a>
+            <a href="../media.html">メディア出演・番組企画</a>
+          </div>
+        </div>
+        <div>
+          <h4>COMPANY</h4>
+          <div class="footer-links">
+            <a href="../about.html">代表紹介・会社概要</a>
+            <a href="../blog.html">ブログ</a>
+            <a href="../contact.html">お問い合わせ</a>
+          </div>
+          <h4 style="margin-top: 24px;">SNS</h4>
+          <div class="footer-links">
+            <a href="https://www.instagram.com/daisaku.terashi" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://x.com/Satsummer099" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 照株式会社 TELASS Inc. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // ★ Sanity設定 — プロジェクトIDを入力
+    const SANITY_PROJECT_ID = 'rpqbkqdq';
+    const SANITY_DATASET = 'production';
+    const SANITY_API_VERSION = '2024-01-01';
+
+    const API_BASE = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}`;
+
+    function sanityImageUrl(ref, width) {
+      if (!ref) return '';
+      const [, id, dimensions, format] = ref.split('-');
+      return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${id}-${dimensions}.${format}?w=${width || 800}&fit=crop&auto=format`;
+    }
+
+    function formatDate(dateStr) {
+      const d = new Date(dateStr);
+      return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+    }
+
+    // Portable Text → HTML変換
+    function renderPortableText(blocks) {
+      if (!blocks || !Array.isArray(blocks)) return '';
+
+      return blocks.map(block => {
+        // 画像ブロック
+        if (block._type === 'image') {
+          const url = sanityImageUrl(block.asset?._ref, 1200);
+          const caption = block.caption || '';
+          const alt = block.alt || '';
+          if (caption) {
+            return `<figure><img src="${url}" alt="${alt}"><figcaption>${caption}</figcaption></figure>`;
+          }
+          return `<img src="${url}" alt="${alt}">`;
+        }
+
+        // テキストブロック
+        if (block._type !== 'block') return '';
+
+        const style = block.style || 'normal';
+        const children = (block.children || []).map(child => {
+          let text = child.text || '';
+          // HTMLエスケープ
+          text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+          // マーク（太字、斜体、リンク）
+          if (child.marks && child.marks.length > 0) {
+            child.marks.forEach(markKey => {
+              if (markKey === 'strong') {
+                text = `<strong>${text}</strong>`;
+              } else if (markKey === 'em') {
+                text = `<em>${text}</em>`;
+              } else {
+                // アノテーション（リンクなど）
+                const annotation = (block.markDefs || []).find(m => m._key === markKey);
+                if (annotation && annotation._type === 'link') {
+                  text = `<a href="${annotation.href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+                }
+              }
+            });
+          }
+          return text;
+        }).join('');
+
+        // リストアイテム
+        if (block.listItem === 'bullet') {
+          return `<li>${children}</li>`;
+        }
+        if (block.listItem === 'number') {
+          return `<li>${children}</li>`;
+        }
+
+        // スタイル別タグ
+        switch (style) {
+          case 'h2': return `<h2>${children}</h2>`;
+          case 'h3': return `<h3>${children}</h3>`;
+          case 'blockquote': return `<blockquote>${children}</blockquote>`;
+          default: return `<p>${children}</p>`;
+        }
+      }).join('\n')
+        // リストアイテムをul/olで囲む（簡易処理）
+        .replace(/((?:<li>.*?<\/li>\s*)+)/g, (match) => {
+          return `<ul>${match}</ul>`;
+        });
+    }
+
+    // 記事を取得して表示
+    async function loadArticle() {
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get('slug');
+
+      if (!slug) {
+        document.getElementById('article-title').textContent = '記事が見つかりません';
+        document.getElementById('article-body').innerHTML = '<p>URLが正しくありません。</p>';
+        return;
+      }
+
+      const query = encodeURIComponent(`
+        *[_type == "blogPost" && slug.current == "${slug}"][0] {
+          title,
+          publishedAt,
+          "categoryTitle": category->title,
+          "imageRef": mainImage.asset._ref,
+          "imageAlt": mainImage.alt,
+          body[] {
+            ...,
+            _type == "image" => {
+              ...,
+              "asset": asset
+            }
+          }
+        }
+      `);
+
+      try {
+        const res = await fetch(`${API_BASE}?query=${query}`);
+        const data = await res.json();
+        const post = data.result;
+
+        if (!post) {
+          document.getElementById('article-title').textContent = '記事が見つかりません';
+          document.getElementById('article-body').innerHTML = '<p>お探しの記事は存在しないか、削除された可能性があります。</p>';
+          return;
+        }
+
+        // ページタイトル更新
+        document.title = `${post.title} | 照株式会社ブログ`;
+
+        // ヘッダー情報
+        document.getElementById('article-title').textContent = post.title;
+        if (post.publishedAt) {
+          document.getElementById('article-date').textContent = formatDate(post.publishedAt);
+        }
+        if (post.categoryTitle) {
+          document.getElementById('article-tag').textContent = post.categoryTitle;
+        } else {
+          document.getElementById('article-tag').style.display = 'none';
+        }
+
+        // メイン画像
+        if (post.imageRef) {
+          const heroDiv = document.getElementById('article-hero-image');
+          heroDiv.style.display = 'block';
+          heroDiv.innerHTML = `<img src="${sanityImageUrl(post.imageRef, 1200)}" alt="${post.imageAlt || post.title}">`;
+        }
+
+        // 本文
+        document.getElementById('article-body').innerHTML = renderPortableText(post.body);
+
+      } catch (err) {
+        console.error('Article fetch error:', err);
+        document.getElementById('article-body').innerHTML = '<p>記事の読み込みに失敗しました。</p>';
+      }
+    }
+
+    loadArticle();
+  </script>
+</body>
+</html>

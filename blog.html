@@ -78,6 +78,21 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
+    .blog-loading {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--text-light);
+      font-size: 14px;
+    }
+    .blog-empty {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--text-light);
+    }
+    .blog-empty p {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
     @media (max-width: 1024px) {
       .blog-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -129,26 +144,10 @@
   <!-- Blog List -->
   <section class="section">
     <div class="container">
-      <div class="blog-grid">
-
-        <!-- ▼ 記事カード：新しい記事を上に追加していく ▼ -->
-
-        <a href="blog/2026-03-19-sample.html" class="blog-card fade-in">
-          <div class="blog-card-thumb">
-            <!-- サムネイル画像がある場合: <img src="images/blog/xxx.jpg" alt=""> -->
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-card-meta">
-              <span class="blog-card-date">2026.03.19</span>
-              <span class="blog-card-tag">サウナ</span>
-            </div>
-            <h3>サウナ施設の開業で押さえるべき3つのポイント</h3>
-            <p>サウナ施設の新規開業を検討されている方へ。立地選定、設備投資、集客戦略の3つの観点から、成功するサウナ施設づくりのポイントを解説します。</p>
-          </div>
-        </a>
-
-        <!-- ▲ 記事カードここまで ▲ -->
-
+      <div id="blog-loading" class="blog-loading">記事を読み込み中...</div>
+      <div id="blog-grid" class="blog-grid"></div>
+      <div id="blog-empty" class="blog-empty" style="display:none;">
+        <p>まだ記事がありません。</p>
       </div>
     </div>
   </section>
@@ -189,5 +188,81 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    // ★ Sanity設定 — プロジェクトID を入力してください
+    const SANITY_PROJECT_ID = 'rpqbkqdq';
+    const SANITY_DATASET = 'production';
+    const SANITY_API_VERSION = '2024-01-01';
+
+    // Sanity CDN API URL
+    const API_BASE = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}`;
+
+    // Sanity画像URLビルダー
+    function sanityImageUrl(ref, width) {
+      if (!ref) return '';
+      const [, id, dimensions, format] = ref.split('-');
+      return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${id}-${dimensions}.${format}?w=${width || 600}&fit=crop&auto=format`;
+    }
+
+    // 日付フォーマット
+    function formatDate(dateStr) {
+      const d = new Date(dateStr);
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}.${m}.${day}`;
+    }
+
+    // 記事一覧を取得
+    async function loadBlogPosts() {
+      const query = encodeURIComponent(`
+        *[_type == "blogPost"] | order(publishedAt desc) {
+          _id,
+          title,
+          slug,
+          publishedAt,
+          excerpt,
+          "categoryTitle": category->title,
+          "imageRef": mainImage.asset._ref
+        }
+      `);
+
+      try {
+        const res = await fetch(`${API_BASE}?query=${query}`);
+        const data = await res.json();
+        const posts = data.result || [];
+
+        document.getElementById('blog-loading').style.display = 'none';
+
+        if (posts.length === 0) {
+          document.getElementById('blog-empty').style.display = 'block';
+          return;
+        }
+
+        const grid = document.getElementById('blog-grid');
+        grid.innerHTML = posts.map(post => `
+          <a href="blog/article.html?slug=${post.slug?.current || ''}" class="blog-card fade-in visible">
+            <div class="blog-card-thumb">
+              ${post.imageRef ? `<img src="${sanityImageUrl(post.imageRef, 600)}" alt="${post.title}">` : ''}
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span class="blog-card-date">${post.publishedAt ? formatDate(post.publishedAt) : ''}</span>
+                ${post.categoryTitle ? `<span class="blog-card-tag">${post.categoryTitle}</span>` : ''}
+              </div>
+              <h3>${post.title}</h3>
+              ${post.excerpt ? `<p>${post.excerpt}</p>` : ''}
+            </div>
+          </a>
+        `).join('');
+
+      } catch (err) {
+        console.error('Blog fetch error:', err);
+        document.getElementById('blog-loading').innerHTML = '記事の読み込みに失敗しました。';
+      }
+    }
+
+    loadBlogPosts();
+  </script>
 </body>
 </html>
